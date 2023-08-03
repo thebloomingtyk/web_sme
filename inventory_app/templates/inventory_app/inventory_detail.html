@@ -1,0 +1,19 @@
+<!-- inventory_app/templates/inventory_app/inventory_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Item Detail</title>
+</head>
+<body>
+    <h1>Inventory Item Detail</h1>
+    <strong>SKU:</strong> {{ inventory_item.sku }}<br>
+    <strong>Description:</strong> {{ inventory_item.description }}<br>
+    <strong>Stock Level:</strong> {{ inventory_item.stock_level }}<br>
+    <strong>Unit Cost:</strong> {{ inventory_item.unit_cost }}<br>
+    <strong>Category:</strong> {{ inventory_item.category.name }}<br>
+    <strong>Reorder Point:</strong> {{ inventory_item.reorder_point }}<br>
+    <p><a href="{% url 'inventory_update' inventory_item.pk %}">Edit</a> |
+       <a href="{% url 'inventory_delete' inventory_item.pk %}">Delete</a> |
+       <a href="{% url 'inventory_list' %}">Back to Inventory List</a></p>
+</body>
+</html>
