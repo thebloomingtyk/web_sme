@@ -1,0 +1,12 @@
+<!-- inventory/templates/inventory/inventory_item_form.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h2>{{ form.instance.sku|default:'Add New Item' }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- inventory/templates/inventory/inventory_form.html -->
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if not form.instance.pk %}Add{% else %}Edit{% endif %} Inventory Item</title>
+</head>
+<body>
+    <h1>{% if not form.instance.pk %}Add{% else %}Edit{% endif %} Inventory Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Save">
+    </form>
+    <p><a href="{% url 'inventory_list' %}">Back to Inventory List</a></p>
+</body>
+</html>

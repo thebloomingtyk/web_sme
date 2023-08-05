@@ -1,0 +1,19 @@
+<!-- inventory/templates/inventory/inventory_confirm_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Deletion</title>
+</head>
+<body>
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete "{{ obj.sku }}"?</p>
+    {% for obj in object_list %}
+        <p>{{ obj.count }}</p>
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm">
+    </form>
+    <p><a href="{% url 'inventory_list' %}">Cancel</a></p>
+</body>
+</html>

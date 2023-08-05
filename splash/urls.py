@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(tf_urls)),
     path('', include('users.urls')),
-    path('inventory/', include('inventory_app.urls')),
+    path('inventory/', include('inventory.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 ]

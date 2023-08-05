@@ -1,0 +1,31 @@
+<!-- inventory/templates/inventory/inventory_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory List</title>
+</head>
+<body>
+    <h1>Inventory List</h1>
+    {% if inventory_items %}
+        <p>There are {{ inventory_items|length }} inventory items.</p>
+    {% else %}
+        <p>There are no inventory items.</p>
+    {% endif %}
+    <ul>
+        {% for item in inventory_items %}
+            <li>
+                <p><a href="{% url 'inventory_detail' item.pk %}"><strong>SKU:</strong> {{ item.sku }} <br></a></p>
+                
+                {% comment %} <strong>Description:</strong> {{ item.description }}<br>
+                <strong>Stock Level:</strong> {{ item.stock_level }}<br>
+                <strong>Unit Cost:</strong> {{ item.unit_cost }}<br>
+                <strong>Category:</strong> {{ item.category.name }}<br>
+                <strong>Reorder Point:</strong> {{ item.reorder_point }}<br> {% endcomment %}
+                {% comment %} <a href="{% url 'inventory_update' item.pk %}">Edit</a> |
+                <a href="{% url 'inventory_delete' item.pk %}">Delete</a> {% endcomment %}
+            </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'inventory_add' %}">Add New Inventory Item</a></p>
+</body>
+</html>

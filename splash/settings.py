@@ -42,13 +42,15 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'exchanges.apps.ExchangesConfig',
     'inventory.apps.InventoryConfig',
-    'inventory_app',
     'debug_toolbar',
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'django_otp.plugins.otp_email',
     'two_factor',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'reset_migrations',
 
 ]
 
@@ -164,7 +166,7 @@ LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'two_factor:login'
 
 # this one is optional
-LOGIN_REDIRECT_URL = 'two_factor:profile'
+LOGIN_REDIRECT_URL = 'two_factor:setup'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -173,4 +175,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #     'django.contrib.auth.backends.ModelBackend',  # default authentication backend
 #     'two_factor.auth_backends.OTPBackend',  # backend for two-factor authentication
 # ]
+
+from celery.schedules import crontab
+
+# settings.py
+CELERY_BEAT_SCHEDULE = {
+    'check-reorder-points': {
+        'task': 'inventory.tasks.check_reorder_points',
+        'schedule': crontab(minute=0, hour=8),  # Adjust the schedule as needed
+    },
+}
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

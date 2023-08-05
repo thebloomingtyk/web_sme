@@ -1,0 +1,14 @@
+<!-- inventory/templates/inventory/category_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Detail</title>
+</head>
+<body>
+    <h1>Category Detail</h1>
+    <strong>Name:</strong> {{ category.name }}<br>
+    <p><a href="{% url 'category_update' category.pk %}">Edit</a> |
+       <a href="{% url 'category_delete' category.pk %}">Delete</a> |
+       <a href="{% url 'category_list' %}">Back to Category List</a></p>
+</body>
+</html>
