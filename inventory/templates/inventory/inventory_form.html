@@ -1,5 +1,29 @@
-<!-- inventory/templates/inventory/inventory_form.html -->
+ <!-- inventory/templates/inventory/inventory_form.html -->
 {% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if not form.instance.pk %}Add{% else %}Edit{% endif %} Inventory Item</title>
+</head>
+<body>
+    <h1>{% if not form.instance.pk %}Add{% else %}Edit{% endif %} Inventory Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <select name="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Save">
+    </form>
+    <p><a href="{% url 'inventory_list' %}">Back to Inventory List</a></p>
+</body>
+</html> 
+
+
+<!-- inventory/templates/inventory/inventory_form.html -->
+{% comment %} {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,4 +38,4 @@
     </form>
     <p><a href="{% url 'inventory_list' %}">Back to Inventory List</a></p>
 </body>
-</html>
+</html> {% endcomment %}

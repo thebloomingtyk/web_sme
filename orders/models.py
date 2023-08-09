@@ -22,3 +22,5 @@ class SalesOrder(models.Model):
     order_date = models.DateField()
     customer_id = models.PositiveIntegerField()  # Replace with ForeignKey to Customers table
     status = models.CharField(max_length=20)  # e.g., pending, shipped
+    
+    

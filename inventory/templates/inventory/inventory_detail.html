@@ -12,8 +12,8 @@
     <strong>Unit Cost:</strong> {{ inventory_item.unit_cost }}<br>
     <strong>Category:</strong> {{ inventory_item.category.name }}<br>
     <strong>Reorder Point:</strong> {{ inventory_item.reorder_point }}<br>
-    <p><a href="{% url 'inventory_update' item.pk %}">Edit</a> |
-       <a href="{% url 'inventory_delete' item.pk %}">Delete</a>
+    <p><a href="{% url 'inventory_update' item.slug %}">Edit</a> |
+       <a href="{% url 'inventory_delete' item.slug %}">Delete</a>
        
        <br><a href="{% url 'inventory_list' %}">Back to Inventory List</a></p>
 </body>

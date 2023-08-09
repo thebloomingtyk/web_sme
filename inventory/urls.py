@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 from .views import (
     # InventoryItemList,
-    InventoryItemCreate,
+    # InventoryItemCreate,
     InventoryItemUpdate,
     InventoryItemDelete,
     CategoryList,
@@ -14,7 +14,17 @@ from .views import (
     CategoryDetailView,
 )
 
+app_name = 'inventory'
+
+
 urlpatterns = [
+    
+    # path('add/', views.inventory_item_create, name='inventory_add'),
+    path('create/', views.create_inventory_item, name='create_inventory_item'),
+    
+    path('list/', views.inventory_item_list, name='inventory_item_list'),
+    path('<slug:category_slug>/', views.inventory_item_list, name='inventory_item_list_by_category'),
+    path('<int:id>/<slug:slug>/', views.inventory_item_detail, name='inventory_item_detail'),
     
     # 
     
@@ -26,7 +36,7 @@ urlpatterns = [
     
     # 
     path('', views.user_inventory_items, name='inventory_list'),
-    path('add/', InventoryItemCreate.as_view(), name='inventory_add'),
+    # path('add/', InventoryItemCreate.as_view(), name='inventory_add'),
     path('detail/<int:pk>/', InventoryDetailView.as_view(), name='inventory_detail'),
     path('<int:pk>/update/', InventoryItemUpdate.as_view(), name='inventory_update'),
     path('<int:pk>/delete/', InventoryItemDelete.as_view(), name='inventory_delete'),

@@ -17,12 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from two_factor.urls import urlpatterns as tf_urls
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(tf_urls)),
     path('', include('users.urls')),
-    path('inventory/', include('inventory.urls')),
+    path('inventory/', include('inventory.urls', namespace='inventory')),
     path('users/', include('django.contrib.auth.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    
+    

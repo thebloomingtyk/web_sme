@@ -14,7 +14,7 @@
     <ul>
         {% for item in inventory_items %}
             <li>
-                <p><a href="{% url 'inventory_detail' item.pk %}"><strong>SKU:</strong> {{ item.sku }} <br></a></p>
+                <p><a href="{{ item.get_absolute_url }}"><strong>SKU:</strong> {{ item.sku }} <br></a></p>
                 
                 {% comment %} <strong>Description:</strong> {{ item.description }}<br>
                 <strong>Stock Level:</strong> {{ item.stock_level }}<br>
@@ -26,6 +26,6 @@
             </li>
         {% endfor %}
     </ul>
-    <p><a href="{% url 'inventory_add' %}">Add New Inventory Item</a></p>
+    <p><a href="{% url 'inventory:inventory_add' %}">Add New Inventory Item</a></p>
 </body>
 </html>

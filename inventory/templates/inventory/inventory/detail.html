@@ -1,0 +1,19 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+{% block title %}
+ {{ inventory_item.name }}
+{% endblock %}
+{% block content %}
+ <div class="product-detail">
+ <img src="{% if inventory_item.image %}{{ inventory_item.image.url }}{% else %}
+ {% static "img/no_image.png" %}{% endif %}">
+ <h1>{{ inventory_item.name }}</h1>
+ <h2>
+ <a href="{{ inventory_item.category.get_absolute_url }}">
+ {{ inventory_item.category }}
+ </a>
+ </h2>
+ <p class="price">${{ inventory_item.price }}</p>
+ {{ inventory_item.description|linebreaks }}
+ </div>
+{% endblock %}
